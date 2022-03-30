@@ -29,7 +29,8 @@ import {
   formatJsonRpcResult,
 } from "@walletconnect/jsonrpc-utils";
 
-import { Subscriber } from "./subscriber";
+// import { Subscriber } from "./subscriber";
+import { subscriber } from "@walletconnect/core";
 import {
   RELAYER_CONTEXT,
   RELAYER_DEFAULT_LOGGER,
@@ -94,7 +95,7 @@ export class Relayer extends IRelayer {
         ? opts?.relayProvider
         : new JsonRpcProvider(new WsConnection(rpcUrl));
     this.messages = new MessageTracker(this.logger, this.storage);
-    this.subscriber = new Subscriber(this, this.logger);
+    this.subscriber = new subscriber.Subscriber(this, this.logger);
     this.publisher = new Publisher(this, this.logger);
     this.registerEventListeners();
   }
